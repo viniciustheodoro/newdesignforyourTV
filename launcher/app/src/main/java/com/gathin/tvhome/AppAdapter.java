@@ -217,6 +217,8 @@ public class AppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     /** Every app tile is its icon on a card tinted from that icon, never its banner (config.xml, uniform_tiles). */
     private final boolean uniformTiles;
     private final List<Entry> items = new ArrayList<>();
+    /** Packages listed even without a leanback entry: the glass home's Principais (Netflix runs as its phone app). */
+    private Set<String> alwaysListed = Collections.emptySet();
 
     AppAdapter(Context ctx, TileListener listener, int dockSize, Config cfg) {
         this.ctx = ctx;
@@ -263,6 +265,7 @@ public class AppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         // Copy before merging: LibraryApps.load() may return an immutable empty set (#419).
         Set<String> added = new HashSet<>(LibraryApps.load(ctx));
         added.addAll(libraryPreload);
+        added.addAll(alwaysListed);
         Set<String> removed = LibraryApps.loadRemoved(ctx);
         if (!added.isEmpty()) {
             Set<String> seen = new HashSet<>(tvPackages);
@@ -498,7 +501,7 @@ public class AppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     /** Opens the tile's activity by explicit component, with no extras: a card can name nothing else. */
-    private void launch(Entry e) {
+    void launch(Entry e) {
         if (e.kind == Entry.HOME_SETTINGS) {
             ctx.startActivity(new Intent(ctx, HomeSettingsActivity.class)
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
@@ -519,7 +522,7 @@ public class AppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
         try {
             ctx.startActivity(i);
-            if (cinematic) LastOpened.record(ctx, e.pkg);
+            LastOpened.record(ctx, e.pkg);
             if (advancedEffects && !reducedMotion && ctx instanceof Activity) {
                 ((Activity) ctx).overridePendingTransition(R.anim.app_open_enter, R.anim.app_open_exit);
             }
@@ -534,6 +537,14 @@ public class AppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     int appCount() { return items.size(); }
+
+    Entry entryAt(int position) {
+        return position >= 0 && position < items.size() ? items.get(position) : null;
+    }
+
+    void setAlwaysListed(Set<String> packages) {
+        alwaysListed = packages;
+    }
 
     boolean isLibraryAt(int position) { return showLibrary && position == items.size(); }
 

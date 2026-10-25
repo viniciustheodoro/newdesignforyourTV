@@ -1,3 +1,91 @@
+# Glass home for Android TV and projectors
+
+<p align="center">
+  <img src="docs/glass/glass-netflix.jpg" alt="Glass home with Netflix in focus: Lupin in the background, the clock top left, the app row below" width="800">
+</p>
+
+A home screen for Android TV boxes and projectors running Android 9 or later. Each app in the main row puts that service's trending series of the week behind everything, full screen, and the picture changes by itself every week. The week this was written, Netflix showed Lupin and HBO Max showed Lanterns.
+
+This repository is a fork of [cleanyourtv](https://github.com/Gathin23/cleanyourtv) by Gathin, with the home screen redrawn. The look follows the "Glass" launcher that [@sohanj showed on Threads](https://www.threads.com/@sohanj/post/De0v2uPjc45), built for a Sony Bravia. Glass itself was never published, so this is a separate implementation written from scratch.
+
+It was built and tested on a Bettdow AC1041-X7 projector: Android 9, 1 GB of memory, no Google certification. That is the kind of device where the stock home screen is slow and full of ads.
+
+<p align="center">
+  <img src="docs/glass/glass-hbo.jpg" alt="HBO Max in focus with Lanterns in the background" width="390">
+  <img src="docs/glass/glass-prime.jpg" alt="Prime Video in focus with The Terminal List in the background" width="390">
+</p>
+
+## What is on the screen
+
+- **Favourites row:** YouTube, HBO Max, Prime Video, Disney+, MUBI, Netflix, Globoplay and Spotify on a single line. Logos rest in white; the focused one turns into a white pill with the brand's own colours. An app that is not installed rests dimmer, and OK opens its page in Aurora Store.
+- **This week's backdrop:** the trending series on the focused service, taken from TMDB's weekly trending list and filtered by what is in that service's catalogue in Brazil. MUBI is a film service, so it shows a film. YouTube and Spotify have no series catalogue and get a backdrop in the app's colour.
+- **Top bar:** a large clock and date, the temperature where you are, and shortcuts to Bluetooth, HDMI inputs, settings and the full app list.
+- **Tabs:** Favourites, Apps (everything installed), Tools (everything that is not streaming) and a + button to put a phone-only app on Home.
+- **Light:** each backdrop is composed once a week and saved ready to show. Nothing is blurred live, which keeps it smooth on a 1 GB device.
+
+## Install
+
+1. Download `glass-home-x.x.apk` from [Releases](https://github.com/viniciustheodoro/newdesignforyourTV/releases).
+2. Install it like any APK: with the Downloader app, from a USB stick, or with `adb install glass-home-x.x.apk`. If your device will not open a plain APK, install it with [SAI](https://github.com/Aefyr/SAI).
+3. Press Home on the remote and pick Glass as the home screen.
+
+If you already run the original cleanyourtv launcher, uninstall it first. Both use the same package name but are signed by different people.
+
+## Series art: your TMDB key
+
+The pictures come from [TMDB](https://www.themoviedb.org), a free film and TV database. Everyone uses their own key, which is free and takes about two minutes:
+
+1. Create an account on themoviedb.org and confirm your email.
+2. Open **Settings › API** and request a **Developer** key. In the form, "personal home screen for my TV" is an honest description.
+3. On the TV, hold OK on the gear in the top bar, choose **TMDB key**, type the key (32 letters and numbers) and save.
+
+The pictures show up within about a minute and refresh by themselves once a week after that. Without a key everything still works, with each app's colour as the backdrop. The key is stored on the device only.
+
+## Everyday use
+
+- **Move an app:** hold OK on it and choose **Move**. The arrows carry it; OK puts it down.
+- **Home menu:** hold OK on the gear for the TMDB key, refreshing the art now, adding apps, and choosing the default home screen. A normal click opens the TV's settings.
+- **Back:** on Apps or Tools, Back returns to Favourites.
+- **Two apps for one service:** the pill opens the official app. With both YouTube and SmartTube installed, the pill opens YouTube and SmartTube shows under its own name in Tools.
+- **Language:** the screen and the series titles follow the TV's language (English and Portuguese, plus the languages cleanyourtv already had).
+
+## Made for Brazil
+
+The art comes from the Brazilian catalogue (`REGION = "BR"` in `Trending.java`), and the eight favourites are the most common services there. For another country, change `REGION` in `Trending.java` and the list in `Brands.java`, then build.
+
+## Build
+
+You need JDK 17 and the Android SDK 34.
+
+```bash
+cd launcher
+./gradlew assembleRelease
+```
+
+The APK lands in `launcher/app/build/outputs/apk/release/`. To build your own TMDB key into it, add `tmdb.key=YOUR_KEY` to `launcher/local.properties`, which git ignores. To build an APK without a key, like the one in Releases, run `./gradlew assembleRelease -PtmdbKey=`.
+
+## Support
+
+Glass is free. If it made your TV nicer and you want to say thanks, any amount is welcome:
+
+<a href="https://ko-fi.com/viniciustheodoro"><img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Support Glass on Ko-fi" height="36"></a>
+
+The launcher this is built on, and the debloat tools around it, are Gathin's work. You can support cleanyourtv at [buymeacoffee.com/gathint](https://buymeacoffee.com/gathint).
+
+## Credits and notices
+
+- Base: [cleanyourtv](https://github.com/Gathin23/cleanyourtv) by Gathin, MIT licence. Everything else in this repository, the debloat tools included, is still the original project, and its documentation follows below.
+- Look inspired by Glass by [@sohanj](https://www.threads.com/@sohanj). No Glass code was used.
+- Series pictures and data: [TMDB](https://www.themoviedb.org). This product uses the TMDB API but is not endorsed or certified by TMDB.
+- Weather: [Open-Meteo](https://open-meteo.com) (CC BY 4.0). The city is estimated from the network with [GeoJS](https://www.geojs.io).
+- Top bar icons drawn after [Lucide](https://lucide.dev) (ISC licence). Outfit typeface under the SIL Open Font License.
+- YouTube, HBO Max, Prime Video, Disney+, MUBI, Netflix, Globoplay and Spotify are trademarks of their owners. This project is not affiliated with any of them; the logos only identify the installed apps. If you represent one of these brands and want a logo removed, open an issue.
+
+---
+
+> **Original project.** Everything below is cleanyourtv's own documentation, as it stands in Gathin's repository.
+
+
 <p align="center">
   <a href="https://cleanyour.tv"><img src="https://raw.githubusercontent.com/Gathin23/cleanyourtv/main/docs/banner.png" alt="CleanYourTV. Your TV, minus the ads. Strip the bloatware from any Android TV or Google TV over Wi-Fi and replace the ad-filled home screen with a clean launcher that looks like an Apple TV. No root, no cable, nothing uninstalled, and a one-line restore." width="800"></a>
 </p>

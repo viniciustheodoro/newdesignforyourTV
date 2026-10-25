@@ -145,4 +145,26 @@
     <string name="race_countdown_hours">%1$dh %2$dmin</string>
     <string name="race_countdown_days">%1$dd %2$dh</string>
     <string name="last_opened">Aberto %1$s</string>
+    <string name="glass_principais">Principais</string>
+    <string name="glass_apps">Apps</string>
+    <string name="glass_tools">Ferramentas</string>
+    <string name="glass_add">Adicionar apps à tela</string>
+    <string name="glass_trending">Série em alta · %1$s</string>
+    <string name="glass_trending_film">Filme em alta · %1$s</string>
+    <string name="glass_not_installed">Não instalado · OK abre a Aurora Store</string>
+    <string name="glass_move">Mover</string>
+    <string name="glass_app_info">Informações do app</string>
+    <string name="glass_move_hint">Use as setas para mover. OK para soltar.</string>
+    <string name="glass_refresh_art">Atualizar imagens das séries</string>
+    <string name="glass_refresh_started">Buscando as séries da semana…</string>
+    <string name="glass_bluetooth">Bluetooth</string>
+    <string name="glass_search">Todos os apps</string>
+    <string name="glass_tmdb_key">Chave do TMDB</string>
+    <string name="glass_tmdb_body">As imagens das séries vêm do TMDB, um catálogo gratuito de filmes e séries. Crie uma chave em themoviedb.org (Configurações › API) e digite aqui. Ela fica só neste aparelho.</string>
+    <string name="glass_tmdb_hint">Chave da API: 32 letras e números</string>
+    <string name="glass_tmdb_saved">Chave salva. Buscando as séries da semana…</string>
+    <string name="glass_tmdb_invalid">Isso não parece uma chave do TMDB. Confira e tente de novo.</string>
+    <string name="glass_tmdb_credit">Este produto usa a API do TMDB, mas não é endossado nem certificado pelo TMDB.</string>
+    <string name="glass_save">Salvar</string>
+    <string name="glass_cancel">Cancelar</string>
 </resources>

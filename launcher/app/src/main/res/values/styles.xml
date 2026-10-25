@@ -4,6 +4,8 @@
         <item name="android:windowBackground">@android:color/black</item>
         <item name="android:colorBackground">@android:color/black</item>
         <item name="android:windowAnimationStyle">@null</item>
+        <!-- Focus is drawn by the views themselves (white pill, white disc); no grey box from the framework. -->
+        <item name="android:defaultFocusHighlightEnabled">false</item>
     </style>
 
     <!-- Frosted pill, tvOS style. -->

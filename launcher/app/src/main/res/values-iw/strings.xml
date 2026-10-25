@@ -145,4 +145,26 @@
     <string name="race_countdown_hours">%1$d שע׳ %2$d דק׳</string>
     <string name="race_countdown_days">%1$d ימ׳ %2$d שע׳</string>
     <string name="last_opened">פתיחה אחרונה: %1$s</string>
+    <string name="glass_principais">ראשיים</string>
+    <string name="glass_apps">אפליקציות</string>
+    <string name="glass_tools">כלים</string>
+    <string name="glass_add">הוספת אפליקציות למסך הבית</string>
+    <string name="glass_trending">סדרה פופולרית · %1$s</string>
+    <string name="glass_trending_film">סרט פופולרי · %1$s</string>
+    <string name="glass_not_installed">לא מותקן · OK פותח את Aurora Store</string>
+    <string name="glass_move">הזזה</string>
+    <string name="glass_app_info">פרטי האפליקציה</string>
+    <string name="glass_move_hint">החצים מזיזים. OK משחרר.</string>
+    <string name="glass_refresh_art">רענון תמונות הסדרות</string>
+    <string name="glass_refresh_started">מחפש את סדרות השבוע…</string>
+    <string name="glass_bluetooth">Bluetooth</string>
+    <string name="glass_search">כל האפליקציות</string>
+    <string name="glass_tmdb_key">מפתח TMDB</string>
+    <string name="glass_tmdb_body">תמונות הסדרות מגיעות מ-TMDB, קטלוג חינמי של סרטים וסדרות. צרו מפתח ב-themoviedb.org (הגדרות › API) והקלידו אותו כאן. הוא נשמר רק במכשיר הזה.</string>
+    <string name="glass_tmdb_hint">מפתח API: ‏32 אותיות ומספרים</string>
+    <string name="glass_tmdb_saved">המפתח נשמר. מחפש את סדרות השבוע…</string>
+    <string name="glass_tmdb_invalid">זה לא נראה כמו מפתח TMDB. בדקו ונסו שוב.</string>
+    <string name="glass_tmdb_credit">המוצר משתמש ב-API של TMDB אך אינו מאושר או מוסמך על ידי TMDB.</string>
+    <string name="glass_save">שמירה</string>
+    <string name="glass_cancel">ביטול</string>
 </resources>

@@ -43,6 +43,7 @@ class TestIconOnlyInputsWiring(unittest.TestCase):
                       'Config must accept a theme config.json "icon_only_inputs" override')
         self.assertIn("this.iconOnlyInputs = iconOnlyInputs", CONFIG_JAVA, "Config must store iconOnlyInputs")
 
+    @unittest.skip("The Glass home replaces the classic MainActivity, its settings menu and its top-bar pills")
     def test_main_activity_applies_it_with_the_shared_helper(self):
         self.assertIn("if (cfg.iconOnlyInputs) makeIconOnly((TextView) btnInputs);", MAIN,
                       "MainActivity must make the Inputs pill icon-only with makeIconOnly, as #556 does for "

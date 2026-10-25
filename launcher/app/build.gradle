@@ -2,6 +2,14 @@ plugins {
     id 'com.android.application'
 }
 
+// TMDB key for the glass home's weekly series art: tmdb.key in local.properties (never committed). Empty: the
+// owner types one on the TV (hold OK on the gear, TMDB key).
+def localProps = new Properties()
+def localFile = rootProject.file('local.properties')
+if (localFile.exists()) localFile.withInputStream { localProps.load(it) }
+// -PtmdbKey= overrides it: an empty value builds the public APK, where each owner types their key on the TV.
+def tmdbKey = (providers.gradleProperty('tmdbKey').getOrElse(localProps.getProperty('tmdb.key') ?: '')).trim()
+
 android {
     namespace 'com.gathin.tvhome'
     compileSdk 34
@@ -11,8 +19,13 @@ android {
         applicationId providers.gradleProperty('launcherApplicationId').getOrElse('com.gathin.tvhome')
         minSdk 26
         targetSdk 34
-        versionCode 9
-        versionName '3.0'
+        versionCode 10
+        versionName 'glass-1.0'
+        buildConfigField 'String', 'TMDB_KEY', "\"${tmdbKey}\""
+    }
+
+    buildFeatures {
+        buildConfig true
     }
 
     buildTypes {

@@ -149,4 +149,28 @@
     <!-- Cinematic top shelf (cinematic_home): the line under the focused dock app's name; %1$s is when it was
          last opened, e.g. "5 minutes ago" or "yesterday, 9:40 pm". -->
     <string name="last_opened">Last opened %1$s</string>
+    <!-- Glass home (MainActivity): categories under the app row, the line under a series title, and menus. -->
+    <string name="glass_principais">Favourites</string>
+    <string name="glass_apps">Apps</string>
+    <string name="glass_tools">Tools</string>
+    <string name="glass_add">Add apps to Home</string>
+    <!-- %1$s is the service, e.g. "HBO Max". -->
+    <string name="glass_trending">Trending series · %1$s</string>
+    <string name="glass_trending_film">Trending film · %1$s</string>
+    <string name="glass_not_installed">Not installed · OK opens Aurora Store</string>
+    <string name="glass_move">Move</string>
+    <string name="glass_app_info">App info</string>
+    <string name="glass_move_hint">Arrows move it. OK puts it down.</string>
+    <string name="glass_refresh_art">Refresh series art</string>
+    <string name="glass_refresh_started">Looking up this week\'s series…</string>
+    <string name="glass_bluetooth">Bluetooth</string>
+    <string name="glass_search">All apps</string>
+    <string name="glass_tmdb_key">TMDB key</string>
+    <string name="glass_tmdb_body">The series art comes from TMDB, a free film and TV catalogue. Create a key at themoviedb.org (Settings › API) and type it here. It stays on this TV.</string>
+    <string name="glass_tmdb_hint">API key: 32 letters and numbers</string>
+    <string name="glass_tmdb_saved">Key saved. Looking up this week\'s series…</string>
+    <string name="glass_tmdb_invalid">That does not look like a TMDB key. Check it and try again.</string>
+    <string name="glass_tmdb_credit">This product uses the TMDB API but is not endorsed or certified by TMDB.</string>
+    <string name="glass_save">Save</string>
+    <string name="glass_cancel">Cancel</string>
 </resources>
